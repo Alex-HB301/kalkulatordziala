@@ -3,6 +3,7 @@ package com.example.kalkulator;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,9 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 
 public class MainActivity extends AppCompatActivity {
-    String mainZmienna;
-    String zmienna1;
-    String  zmienna2;
+    String zmienna1 = "";
+    String  zmienna2 = "";
     int znak = -1;
     View.OnClickListener listenerZmienna;
     @Override
@@ -28,15 +28,17 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+    TextView wyswietlacz = findViewById(R.id.textView);
+
     if(znak == -1){
         listenerZmienna = v -> {
             zmienna1 += ((Button) v).getText().toString();
-            mainZmienna = zmienna1;
+            wyswietlacz.setText(zmienna1);
         };
     }
     else{
         listenerZmienna = v -> {
-
+            
         };
     }
 
