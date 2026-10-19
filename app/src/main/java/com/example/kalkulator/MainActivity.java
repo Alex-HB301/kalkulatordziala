@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
+import androidx.core.text.HtmlKt;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
@@ -32,9 +33,56 @@ public class MainActivity extends AppCompatActivity {
     TextView wyswietlacz = findViewById(R.id.textView);
 
     listenerZmienna = v -> {
+        kontrolka = ((Button) v).getText().toString();
         System.out.println("kebab");
-        if(znak == -1){
-            kontrolka = ((Button) v).getText().toString();
+        if(kontrolka.equals("C")){
+            znak = -1;
+            zmienna1 = "";
+            zmienna2 = "";
+            wyswietlacz.setText("0");
+        }
+        else if(kontrolka.equals("=")){
+            if(znak == -1 || zmienna1.equals("") || zmienna2.equals("")){
+                wyswietlacz.setText("ty debilu skonczony, ty idioto");
+            }
+            else{
+                float rownanie1 = Float.parseFloat(zmienna1);
+                float roundedValue1 = Math.round(rownanie1 * 10000.0f) / 10000.0f;
+                float rownanie2 = Float.parseFloat(zmienna2);
+                float roundedValue2 = Math.round(rownanie2 * 10000.0f) / 10000.0f;
+                float wynik;
+                if(znak == 1){
+                    wynik = roundedValue1 + roundedValue2;
+                    wyswietlacz.setText(Float.toString(wynik));
+                    zmienna1 = "";
+                    zmienna2 = "";
+                    znak = -1;
+                }
+                else if(znak == 2){
+                    wynik = roundedValue1 - roundedValue2;
+                    wyswietlacz.setText(Float.toString(wynik));
+                    zmienna1 = "";
+                    zmienna2 = "";
+                    znak = -1;
+                }
+                else if(znak == 3){
+                    wynik = roundedValue1 * roundedValue2;
+                    wyswietlacz.setText(Float.toString(wynik));
+                    zmienna1 = "";
+                    zmienna2 = "";
+                    znak = -1;
+                }
+                else{
+                    wynik = roundedValue1 / roundedValue2;
+                    wynik = roundedValue1 / roundedValue2;
+                    wyswietlacz.setText(Float.toString(wynik));
+                    zmienna1 = "";
+                    zmienna2 = "";
+                    znak = -1;
+                }
+            }
+        }
+        else if(znak == -1){
             if(kontrolka.equals("+")){
                 znak = 1;
                 wyswietlacz.setText("+");
@@ -60,8 +108,21 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else{
-            zmienna2 += ((Button) v).getText().toString();
-            wyswietlacz.setText(zmienna2);
+            if(kontrolka.equals("+")){
+                wyswietlacz.setText("ty debilu skonczony, ty idioto");
+            } else if (kontrolka.equals("-")) {
+                wyswietlacz.setText("ty debilu skonczony, ty idioto");
+            }
+            else if (kontrolka.equals("*")) {
+                wyswietlacz.setText("ty debilu skonczony, ty idioto");
+            }
+            else if (kontrolka.equals("/")) {
+                wyswietlacz.setText("ty debilu skonczony, ty idioto");
+            }
+            else{
+                zmienna2 += ((Button) v).getText().toString();
+                wyswietlacz.setText(zmienna2);
+            }
         }
     };
 
@@ -79,7 +140,9 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.btnMinus).setOnClickListener(listenerZmienna);
     findViewById(R.id.btnMultiply).setOnClickListener(listenerZmienna);
     findViewById(R.id.btnDivide).setOnClickListener(listenerZmienna);
-
+    findViewById(R.id.btnComa).setOnClickListener(listenerZmienna);
+    findViewById(R.id.btnSend).setOnClickListener(listenerZmienna);
+    findViewById(R.id.btnReset).setOnClickListener(listenerZmienna);
     }
 
 
