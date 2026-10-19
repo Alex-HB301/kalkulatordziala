@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
     String zmienna1 = "";
     String  zmienna2 = "";
+    String kontrolka = "";
     int znak = -1;
     View.OnClickListener listenerZmienna;
     @Override
@@ -32,8 +33,27 @@ public class MainActivity extends AppCompatActivity {
 
     if(znak == -1){
         listenerZmienna = v -> {
-            zmienna1 += ((Button) v).getText().toString();
-            wyswietlacz.setText(zmienna1);
+            kontrolka = ((Button) v).getText().toString();
+            System.out.println(kontrolka);
+            if(kontrolka.equals("+")){
+                znak = 1;
+                wyswietlacz.setText("+");
+            } else if (kontrolka.equals("-")) {
+                znak = 2;
+                wyswietlacz.setText("-");
+            }
+            else if (kontrolka.equals("*")) {
+                znak = 3;
+                wyswietlacz.setText("*");
+            }
+            else if (kontrolka.equals("/")) {
+                znak = 4;
+                wyswietlacz.setText("/");
+            }
+            else{
+                zmienna1 += ((Button) v).getText().toString();
+                wyswietlacz.setText(zmienna1);
+            }
         };
     }
     else{
@@ -52,18 +72,11 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.btn7).setOnClickListener(listenerZmienna);
     findViewById(R.id.btn8).setOnClickListener(listenerZmienna);
     findViewById(R.id.btn9).setOnClickListener(listenerZmienna);
-
+    findViewById(R.id.btnPlus).setOnClickListener(listenerZmienna);
+    findViewById(R.id.btnMinus).setOnClickListener(listenerZmienna);
+    findViewById(R.id.btnMultiply).setOnClickListener(listenerZmienna);
+    findViewById(R.id.btnDivide).setOnClickListener(listenerZmienna);
     }
 
-    private void setZmienna1(){
 
-    }
-
-    private void setZmienna2(){
-
-    }
-
-    private void setZnak(){
-
-    }
 }
