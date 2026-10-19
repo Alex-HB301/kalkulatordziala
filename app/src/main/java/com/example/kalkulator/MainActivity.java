@@ -31,36 +31,39 @@ public class MainActivity extends AppCompatActivity {
 
     TextView wyswietlacz = findViewById(R.id.textView);
 
-    if(znak == -1){
-        listenerZmienna = v -> {
+    listenerZmienna = v -> {
+        System.out.println("kebab");
+        if(znak == -1){
             kontrolka = ((Button) v).getText().toString();
-            System.out.println(kontrolka);
             if(kontrolka.equals("+")){
                 znak = 1;
                 wyswietlacz.setText("+");
+                System.out.println(znak);
             } else if (kontrolka.equals("-")) {
                 znak = 2;
                 wyswietlacz.setText("-");
+                System.out.println(znak);
             }
             else if (kontrolka.equals("*")) {
                 znak = 3;
                 wyswietlacz.setText("*");
+                System.out.println(znak);
             }
             else if (kontrolka.equals("/")) {
                 znak = 4;
                 wyswietlacz.setText("/");
+                System.out.println(znak);
             }
             else{
                 zmienna1 += ((Button) v).getText().toString();
                 wyswietlacz.setText(zmienna1);
             }
-        };
-    }
-    else{
-        listenerZmienna = v -> {
-            
-        };
-    }
+        }
+        else{
+            zmienna2 += ((Button) v).getText().toString();
+            wyswietlacz.setText(zmienna2);
+        }
+    };
 
     findViewById(R.id.btn0).setOnClickListener(listenerZmienna);
     findViewById(R.id.btn1).setOnClickListener(listenerZmienna);
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.btnMinus).setOnClickListener(listenerZmienna);
     findViewById(R.id.btnMultiply).setOnClickListener(listenerZmienna);
     findViewById(R.id.btnDivide).setOnClickListener(listenerZmienna);
+
     }
 
 
